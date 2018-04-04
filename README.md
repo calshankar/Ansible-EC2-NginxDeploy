@@ -69,6 +69,12 @@ Check the group_vars folder & the respective roles folders. Following are the va
 - instance_region: ap-south-1
 - ami_id: ami-e60e5a89
 
+@ group_vars/tag_owner_shankar
+- ansible_ssh_private_key_file: <aws shh pem file>
+- ansible_user: ec2-user
+- ansible_become: yes
+- become_method: sudo
+
 Any custom variable to be used in roles can be added here
 
 ## Dependencies
