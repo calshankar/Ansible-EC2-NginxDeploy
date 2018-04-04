@@ -1,0 +1,21 @@
+---
+- block:
+
+  - name: Terminate Instances
+    ec2:
+      state: absent
+      region: "{{ ec2_region }}"
+      instance_ids: "{{ ec2_id }}"
+      wait: true
+    delegate_to: localhost
+    tags:
+      - terminate
+
+  - name: Remove ansible security group
+    ec2_group:
+      name: ansible
+      region: "{{ ec2_region }}"
+      state: absent
+    delegate_to: localhost
+    tags:
+      - terminate  

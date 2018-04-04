@@ -1,0 +1,27 @@
+<p></p>
+<div class="container">
+<div class="grid">
+<div class="unit span-grid">
+<div class="head"><br /><br /></div>
+<div class="unit span-grid"><img src="
+                              {%- if ansible_distribution == 'RedHat' -%}
+                              {{ img_redhat }}                
+                              {%- endif %}
+" class="intro" alt="mainpic" />
+<h1>Ansible EC2 playbook for Nginx Deployment</h1>
+<p><br /><strong><span style="color: #ff99cc;">Amazing!</span> If you are seeing this page then you have <span style="color: #cc99ff;">successfully deployed</span> roles using my Ansible playbook</strong></p>
+<p><em></em></p>
+<p>The EC2 role play was successfully deployed using EC2 Dynamic inventory by the user...&nbsp;<em><span style="text-decoration: underline;"><span style="color: #cc99ff; text-decoration: underline;">{{ lookup('env','USER') }}</span></span></em></p>
+<p><span style="color: #cc99ff;"><span style="color: #000000;">More info about Dynamic inventory at this&nbsp;<span style="color: #cc99ff;"><a href="https://aws.amazon.com/blogs/apn/getting-started-with-ansible-and-dynamic-amazon-ec2-inventory-management/" style="color: #cc99ff;">AWS-blog</a><br /><br /></span></span></span><span style="color: #cc99ff;"><span style="color: #000000;"><span style="color: #cc99ff;"><br /><span style="color: #000000;">Primarily, the playbook that you just ran is combination of two roles, namely:</span></span></span></span></p>
+<ol>
+<li><span style="color: #cc99ff;"><span style="color: #000000;"><span style="color: #cc99ff;">aws_ec2:&nbsp;<span style="color: #000000;">This role creates security group, opens up ports &amp; starts up the instance. The instance type &amp; number of instance can be changed here<br /><br /></span></span></span></span></li>
+<li><span style="color: #cc99ff;"><span style="color: #000000;"><span style="color: #cc99ff;">nginx_web:&nbsp;<span style="color: #000000;">This role provisions the nginx web server, jinja2 template with dynamic variable which sets-up the page that you are seeing now with the username (shell env variable 'USER'), besides the option (you will be prompted) to terminate the instances (optional)</span></span></span></span></li>
+</ol>
+<h2>Installation and Configuration of Ansible</h2>
+<p>Check out the documentation &amp; the Ansible roles @ <a href="https://github.com/calshankar/Ansible-EC2-NginxDeploy">Github</a>&nbsp;</p>
+<hr />
+<p>by <a href="https://linkedin.com/in/shankar-ramanathan-a5715b9/">Shankar Ramanathan</a></p>
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,4 @@
+---
+instance_type: t2.micro
+instance_region: ap-south-1
+ami_id: ami-e60e5a89

@@ -1,0 +1,10 @@
+---
+
+- block:
+  - name: List of host for HTTP service check 
+    debug:
+      msg: "Check http://{{ ansible_host }}"
+  
+  - name: Pause & check Nginx service before instance termination
+    pause:
+      prompt: "Verify Nginx service and continue to terminate"

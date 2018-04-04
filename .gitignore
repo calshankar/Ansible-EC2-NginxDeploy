@@ -1,0 +1,4 @@
+*.retry
+*.pyc
+.vscode
+.DS_Store

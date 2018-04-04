@@ -1,0 +1,41 @@
+---
+# tasks file for aws_ec2
+# Task: Create Security group, Use the EC2 module to launch instance & then reload the Dynamic inventory
+
+- block:
+  - name: Create Security Group
+    ec2_group:
+      name: ansible
+      description: Ansible Security Group
+      region: ap-south-1
+      rules:
+        - proto: tcp
+          from_port: 80
+          to_port: 80
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 22
+          to_port: 22
+          cidr_ip: 0.0.0.0/0
+    delegate_to: localhost
+
+  - name: Launch EC2 instance
+    ec2:
+      key_name: Ansible
+      group: ansible
+      instance_type: "{{ instance_type }}"
+      image: "{{ ami_id }}"
+      region: "{{ instance_region }}"
+      wait: true
+      exact_count: 1
+      count_tag:
+        Name: Nginxtestdeploy
+      instance_tags:
+        owner: shankar
+        Type: Nginx-web
+    ignore_errors: true
+    delegate_to: localhost
+
+  - name: Reload Dynamic inventory generated using ec2 inventory
+    meta: refresh_inventory
+    delegate_to: localhost

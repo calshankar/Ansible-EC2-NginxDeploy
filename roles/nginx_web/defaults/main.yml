@@ -1,0 +1,4 @@
+---
+# defaults file for nginx_web
+target_dir: /usr/share/nginx/html
+...

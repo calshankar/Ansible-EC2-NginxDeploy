@@ -1,0 +1,8 @@
+---
+- block:
+    - import_tasks: init_nginx.yml
+    - meta: flush_handlers
+    - import_tasks: verify_service.yml
+    - import_tasks: terminate.yml
+    
+...

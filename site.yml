@@ -1,0 +1,17 @@
+# Role for launching EC2 instance
+- name: Launch EC2 instance
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  roles:
+    - aws_ec2
+  tags:
+    - setup
+
+# Role for Nginx Deployment
+- name: Nginx role Deployment
+  hosts: tag_owner_shankar  
+  roles:
+    - nginx_web
+  tags:
+    - deploy

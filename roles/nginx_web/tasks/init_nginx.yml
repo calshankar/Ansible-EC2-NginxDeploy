@@ -1,0 +1,62 @@
+---
+# tasks file for nginx_web
+- block:
+  - name: Install EPEL
+    yum:
+      name: https://download.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+      update_cache: yes
+      state: latest
+    when: ansible_distribution == 'RedHat'
+
+  - name: Install Nginx
+    package:
+      name: nginx
+      state: latest
+
+  - name: Install Patch
+    yum:
+      name: patch
+      update_cache: yes
+      state: latest
+    when: ansible_os_family == 'RedHat'
+
+  - name: Create sites-available directory
+    file:
+      path: /etc/nginx/sites-available
+      state: directory
+
+  - name: Create sites-enabled directory
+    file:
+      path: /etc/nginx/sites-enabled
+      state: directory
+  
+  - name: Create nginx/html directory
+    file:
+      path: /usr/share/nginx/html
+      state: directory
+
+  - name: Copy default nginx configuration
+    copy:
+      src: nginx-default.conf
+      dest: /etc/nginx/sites-available/default
+
+  - name: Symbolic link /etc/nginx/sites-available/default to /etc/nginx/sites-enabled/default
+    file:
+      src: /etc/nginx/sites-available/default
+      dest: /etc/nginx/sites-enabled/default
+      state: link
+
+  - name: Template index.html.j2 to index.html on target
+    template:
+      src: templates/index.html.j2
+      dest: "{{ target_dir }}/index.html"
+      mode: 0644
+
+  - name: Patch nginx.conf to include sites-available, disable defaults
+    patch:
+      src: nginx.conf.patch
+      dest: /etc/nginx/nginx.conf
+    when: ansible_os_family == 'RedHat'
+    notify: Restart nginx
+
+
