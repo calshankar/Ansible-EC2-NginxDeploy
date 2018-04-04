@@ -12,7 +12,6 @@ Primarily, the playbook that you just ran is combination of two roles, namely:
 - nginx_web: This role provisions the nginx web server, jinja2 template with dynamic variable which sets-up the page, besides the option (you will be prompted) to terminate the instances (optional)
 
 ## Requirements
-------------
 
 To run this playbook on your local machine, you must install the following prerequisites:
 
@@ -34,40 +33,35 @@ Once Homebrew is installed you can install the latest version of Python 2.7 as f
 
 ```bash
 $ brew install python2
-...
-...
+
 ```
 
 This will install the PIP package manager as `pip2` and you can install Ansible and required dependencies:
 
 ```bash
 $ pip2 install ansible awscli boto3
-...
-...
+
 ```
 
 Note that `boto3` must also be installed in the system python, which you can perform as follows:
 
 ```bash
 $ sudo -H /usr/bin/python -m easy_install pip
-...
-...
+
 $ sudo -H /usr/bin/python -m pip install boto3 --ignore-installed six
-...
-...
+
 ```
 
 Once you have installed `boto3` in your system python, it is recommended to run the following commands to ensure your Homebrew and system python environments are configured correctly:
 
 ```
 $ brew unlink python
-...
+
 $ brew link --overwrite python
-...
+
 ```
 
 ## Role Variables
---------------
 
 Check the group_vars folder & the respective roles folders. Following are the variables under `group_vars/all/vars.yml` which can be modified and referenced in the tasks.
 
@@ -78,7 +72,6 @@ Check the group_vars folder & the respective roles folders. Following are the va
 Any custom variable to be used in roles can be added here
 
 ## Dependencies
-------------
 
 Dependant on the role `aws_ec2` for creating the instance. You control the run of the role by using by the tag/skip tags `setup`. This role can also be adopted for any environment by changing the hostvars of the role accordingly.
 
@@ -87,7 +80,6 @@ Dependant on the role `nginx_web` which provisions the nginx web server. You con
 `site.yml` master file drives both the roles
 
 ## Getting Started
-------------------
 
 To run the playbook, you just need to run the master file site.yml which executes the role based on the tags specified
 
